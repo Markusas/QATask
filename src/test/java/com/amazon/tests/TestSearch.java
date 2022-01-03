@@ -14,18 +14,23 @@ public class TestSearch extends BasePage {
     public TestSearch() {
     }
 
-    @BeforeMethod
+    @BeforeTest
     public void setUp() throws IOException {
         initialization();
         amazonHomePage = new AmazonHomePage();
     }
 
-    @Test
+    @Test(priority = 1)
     public void searchForToy() throws IOException {
         amazonHomePage.searchToy(getToyName());
     }
 
-    @AfterMethod
+    @Test (priority = 2)
+    public void sortToys() {
+        amazonHomePage.sortByCustomerReview();
+    }
+
+    @AfterTest
     public void afterTest() {
         driver.quit();
     }

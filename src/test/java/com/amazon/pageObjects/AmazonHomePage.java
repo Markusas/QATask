@@ -16,6 +16,9 @@ public class AmazonHomePage extends BasePage {
     By searchBox = By.id("twotabsearchtextbox");
     By searchSubmit = By.id("nav-search-submit-button");
 
+    By sort = By.xpath("//span[@class='a-dropdown-prompt']");
+    By avgCustomerReviewSort = By.xpath("//div[@id='a-popover-2']//li[4]");
+
     public void clickSignIn() {
         driver.findElement(signInButton).click();
     }
@@ -23,5 +26,10 @@ public class AmazonHomePage extends BasePage {
     public void searchToy(String toyName) throws IOException {
         driver.findElement(searchBox).sendKeys(getToyName());
         driver.findElement(searchSubmit).click();
+    }
+
+    public void sortByCustomerReview() {
+        driver.findElement(sort).click();
+        driver.findElement(avgCustomerReviewSort).click();
     }
 }
