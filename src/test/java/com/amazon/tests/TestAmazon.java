@@ -1,5 +1,7 @@
-import com.amazone.pages.AmazonHomePage;
-import com.amazone.pages.SignInPage;
+package com.amazon.tests;
+
+import com.amazon.pageObjects.AmazonHomePage;
+import com.amazon.pageObjects.SignInPage;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;

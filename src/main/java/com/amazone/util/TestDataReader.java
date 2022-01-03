@@ -26,4 +26,8 @@ public class TestDataReader {
     public static String getPassword() throws IOException {
         return getTestData().getProperty("password");
     }
+
+    public static String getToyName() throws IOException {
+        return getTestData().getProperty("toyName");
+    }
 }
