@@ -1,47 +1,35 @@
 package com.amazon.tests;
 
+import com.amazon.base.BasePage;
 import com.amazon.pageObjects.AmazonHomePage;
 import com.amazon.pageObjects.SignInPage;
-import org.openqa.selenium.Platform;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.remote.RemoteWebDriver;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 
 import java.io.IOException;
-import java.net.URL;
-import java.time.Duration;
 
-import static com.amazone.util.TestDataReader.getNodeUrl;
-import static com.amazone.util.TestDataReader.getUrl;
-
-
-public class TestAmazon {
-    WebDriver driver;
+public class TestAmazon extends BasePage {
     AmazonHomePage amazonHomePage;
     SignInPage signInPage;
-    String baseUrl, nodeUrl;
 
-    @BeforeTest
+    public TestAmazon() {
+    }
+
+    @BeforeMethod
     public void setUp() throws IOException {
-        baseUrl = getUrl();
-        nodeUrl = getNodeUrl();
-        DesiredCapabilities dc = new DesiredCapabilities();
-        dc.setBrowserName("chrome");
-        dc.setPlatform(Platform.WINDOWS);
-        driver = new RemoteWebDriver(new URL(nodeUrl), dc);
-        driver.get(baseUrl);
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        initialization();
+        amazonHomePage = new AmazonHomePage();
+        signInPage = new SignInPage();
     }
 
     @Test
     public void logInAmazon() throws IOException {
-        amazonHomePage = new AmazonHomePage(driver);
-        signInPage = new SignInPage(driver);
         amazonHomePage.clickSignIn();
         signInPage.enterEmailAndContinue();
         signInPage.enterPasswordAndSubmit();
+    }
+
+    @AfterMethod
+    public void afterTest() {
+        driver.quit();
     }
 }

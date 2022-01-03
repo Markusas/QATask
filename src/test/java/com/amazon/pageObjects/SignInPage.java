@@ -1,19 +1,18 @@
 package com.amazon.pageObjects;
 
+import com.amazon.base.BasePage;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 
 import java.io.IOException;
 
 import static com.amazone.util.TestDataReader.getEmail;
 import static com.amazone.util.TestDataReader.getPassword;
 
-public class SignInPage {
-    public SignInPage(WebDriver driver) {
-        this.driver = driver;
+public class SignInPage extends BasePage {
+
+    public SignInPage() {
     }
 
-    WebDriver driver;
     By email = By.id("ap_email");
     By continueButton = By.id("continue");
     By password = By.id("ap_password");

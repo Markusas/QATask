@@ -30,4 +30,8 @@ public class TestDataReader {
     public static String getToyName() throws IOException {
         return getTestData().getProperty("toyName");
     }
+
+    public static String getBrowser() throws IOException {
+        return getTestData().getProperty("browser");
+    }
 }
