@@ -25,9 +25,14 @@ public class TestSearch extends BasePage {
         amazonHomePage.searchToy(getToyName());
     }
 
-    @Test (priority = 2)
+    @Test(priority = 2)
     public void sortToys() {
         amazonHomePage.sortByCustomerReview();
+    }
+
+    @Test(priority = 3)
+    public void addToCard() {
+        amazonHomePage.addToys();
     }
 
     @AfterTest

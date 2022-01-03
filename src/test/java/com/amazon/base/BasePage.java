@@ -26,8 +26,9 @@ public class BasePage {
         dc.setBrowserName(browser);
         dc.setPlatform(Platform.WINDOWS);
         driver = new RemoteWebDriver(new URL(nodeUrl), dc);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
         driver.get(baseUrl);
         driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
+
     }
 }
