@@ -17,7 +17,7 @@ import static com.amazone.util.TestDataReader.getUrl;
 
 public class TestAmazon {
     WebDriver driver;
-    AmazonHomePage amazoneHomePage;
+    AmazonHomePage amazonHomePage;
     SignInPage signInPage;
     String baseUrl, nodeUrl;
 
@@ -36,9 +36,9 @@ public class TestAmazon {
 
     @Test
     public void logInAmazon() throws IOException {
-        amazoneHomePage = new AmazonHomePage(driver);
+        amazonHomePage = new AmazonHomePage(driver);
         signInPage = new SignInPage(driver);
-        amazoneHomePage.clickSignIn();
+        amazonHomePage.clickSignIn();
         signInPage.enterEmailAndContinue();
         signInPage.enterPasswordAndSubmit();
     }
