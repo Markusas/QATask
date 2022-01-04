@@ -2,6 +2,7 @@ package com.amazon.tests;
 
 import com.amazon.base.BasePage;
 import com.amazon.pageObjects.AmazonHomePage;
+import com.amazon.pageObjects.CheckoutPage;
 import com.amazon.pageObjects.ShoppingCart;
 import org.testng.Assert;
 import org.testng.annotations.*;
@@ -13,6 +14,7 @@ import static com.amazone.util.TestDataReader.*;
 public class TestSearch extends BasePage {
     AmazonHomePage amazonHomePage;
     ShoppingCart shoppingCart;
+    CheckoutPage checkoutPage;
 
     public TestSearch() {
     }
@@ -22,6 +24,7 @@ public class TestSearch extends BasePage {
         initialization();
         amazonHomePage = new AmazonHomePage();
         shoppingCart = new ShoppingCart();
+        checkoutPage = new CheckoutPage();
     }
 
     @Test(priority = 1)
@@ -55,6 +58,12 @@ public class TestSearch extends BasePage {
     public void checkBasket() {
         String count = shoppingCart.getNumberOfToys();
         Assert.assertEquals(count, "1", "Count of toys does not match");
+    }
+
+    @Test(priority = 7)
+    public void verifyAmount() {
+        double amount = checkoutPage.getPrice();
+        Assert.assertEquals(amount, 4.99, "Total amount does not match");
     }
 
     @AfterTest
