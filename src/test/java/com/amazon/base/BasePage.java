@@ -26,6 +26,7 @@ public class BasePage {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(60));
         driver.get(baseUrl);
         driver.manage().window().maximize();
+        driver.manage().deleteAllCookies();
 
     }
 }
