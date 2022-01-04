@@ -55,15 +55,15 @@ public class TestSearch extends BasePage {
     }
 
     @Test(priority = 6)
-    public void checkBasket() {
+    public void checkBasket() throws IOException {
         String count = shoppingCart.getNumberOfToys();
-        Assert.assertEquals(count, "1", "Count of toys does not match");
+        Assert.assertEquals(count, getToysAmount(), "Count of toys does not match");
     }
 
     @Test(priority = 7)
-    public void verifyAmount() {
+    public void verifyAmount() throws IOException {
         double amount = checkoutPage.getPrice();
-        Assert.assertEquals(amount, 4.99, "Total amount does not match");
+        Assert.assertEquals(amount, Double.parseDouble(getTotalPrice()), "Total amount does not match");
     }
 
     @AfterTest

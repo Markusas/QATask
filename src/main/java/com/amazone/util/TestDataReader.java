@@ -34,4 +34,12 @@ public class TestDataReader {
     public static String getBrowser() throws IOException {
         return getTestData().getProperty("browser");
     }
+
+    public static String getToysAmount() throws IOException {
+        return getTestData().getProperty("toysCount");
+    }
+
+    public static String getTotalPrice() throws IOException {
+        return getTestData().getProperty("totalAmount");
+    }
 }
