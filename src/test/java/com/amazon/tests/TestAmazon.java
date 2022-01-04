@@ -66,4 +66,9 @@ public class TestAmazon extends BasePage {
         Assert.assertEquals(amount, Double.parseDouble(getTotalPrice()), "Total amount does not match");
     }
 
+    @Test(priority = 8)
+    public void clearBasket() {
+        shoppingCart.deleteToyFromBasket();
+    }
+
 }

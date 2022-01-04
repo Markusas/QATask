@@ -22,4 +22,8 @@ public class ShoppingCart extends BasePage {
         return number;
     }
 
+    public void deleteToyFromBasket() {
+        driver.findElement(toysList).click();
+    }
+
 }

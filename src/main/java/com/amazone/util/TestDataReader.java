@@ -42,4 +42,8 @@ public class TestDataReader {
     public static String getTotalPrice() throws IOException {
         return getTestData().getProperty("totalAmount");
     }
+
+    public static String getTime() throws IOException {
+        return getTestData().getProperty("defaultTimeout");
+    }
 }
