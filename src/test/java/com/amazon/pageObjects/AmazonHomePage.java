@@ -2,18 +2,11 @@ package com.amazon.pageObjects;
 
 import com.amazon.base.BasePage;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
 import java.io.IOException;
-import java.util.List;
 
 import static com.amazone.util.TestDataReader.getToyName;
 
 public class AmazonHomePage extends BasePage {
-
-    public AmazonHomePage() {
-    }
 
     By signInButton = By.xpath("//a[@id='nav-link-accountList']");
     By searchBox = By.id("twotabsearchtextbox");

@@ -2,6 +2,7 @@ package com.amazon.tests;
 
 import com.amazon.base.BasePage;
 import com.amazon.pageObjects.AmazonHomePage;
+import com.amazon.pageObjects.ShoppingCart;
 import org.testng.annotations.*;
 
 import java.io.IOException;
@@ -10,6 +11,7 @@ import static com.amazone.util.TestDataReader.*;
 
 public class TestSearch extends BasePage {
     AmazonHomePage amazonHomePage;
+    ShoppingCart shoppingCart;
 
     public TestSearch() {
     }
@@ -18,6 +20,7 @@ public class TestSearch extends BasePage {
     public void setUp() throws IOException {
         initialization();
         amazonHomePage = new AmazonHomePage();
+        shoppingCart = new ShoppingCart();
     }
 
     @Test(priority = 1)
@@ -35,6 +38,16 @@ public class TestSearch extends BasePage {
         amazonHomePage.addThirdToy();
         amazonHomePage.navigateBack();
         amazonHomePage.addFourthToy();
+    }
+
+    @Test(priority = 4)
+    public void navigateToShoppingCart() {
+        shoppingCart.navigateToBasket();
+    }
+
+    @Test(priority = 5)
+    public void removeSecondToy() throws InterruptedException {
+        shoppingCart.deleteToy();
     }
 
     @AfterTest
