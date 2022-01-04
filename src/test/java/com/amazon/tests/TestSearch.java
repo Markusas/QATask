@@ -26,13 +26,15 @@ public class TestSearch extends BasePage {
     }
 
     @Test(priority = 2)
-    public void sortToys() {
+    public void sortToys() throws InterruptedException {
         amazonHomePage.sortByCustomerReview();
     }
 
     @Test(priority = 3)
     public void addToCard() {
-        amazonHomePage.addToys();
+        amazonHomePage.addThirdToy();
+        amazonHomePage.navigateBack();
+        amazonHomePage.addFourthToy();
     }
 
     @AfterTest

@@ -35,13 +35,24 @@ public class AmazonHomePage extends BasePage {
         driver.findElement(searchSubmit).click();
     }
 
-    public void sortByCustomerReview() {
+    public void sortByCustomerReview() throws InterruptedException {
         driver.findElement(sort).click();
         driver.findElement(avgCustomerReviewSort).click();
+        Thread.sleep(1000);
     }
 
-    public void addToys() {
+    public void addThirdToy() {
         driver.findElements(elementsList).get(2).click();
+        driver.findElement(addToBasket).click();
+    }
+
+    public void navigateBack() {
+        driver.navigate().back();
+        driver.navigate().back();
+    }
+
+    public void addFourthToy() {
+        driver.findElements(elementsList).get(3).click();
         driver.findElement(addToBasket).click();
     }
 }

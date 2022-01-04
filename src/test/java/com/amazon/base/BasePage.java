@@ -14,9 +14,6 @@ import static com.amazone.util.TestDataReader.*;
 public class BasePage {
     public static WebDriver driver;
 
-    public BasePage() {
-    }
-
     public static void initialization() throws IOException {
         String baseUrl = getUrl();
         String nodeUrl = getNodeUrl();
