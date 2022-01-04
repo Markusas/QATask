@@ -3,6 +3,7 @@ package com.amazon.tests;
 import com.amazon.base.BasePage;
 import com.amazon.pageObjects.AmazonHomePage;
 import com.amazon.pageObjects.ShoppingCart;
+import org.testng.Assert;
 import org.testng.annotations.*;
 
 import java.io.IOException;
@@ -48,6 +49,12 @@ public class TestSearch extends BasePage {
     @Test(priority = 5)
     public void removeSecondToy() throws InterruptedException {
         shoppingCart.deleteToy();
+    }
+
+    @Test(priority = 6)
+    public void checkBasket() {
+        String count = shoppingCart.getNumberOfToys();
+        Assert.assertEquals(count, "1", "Count of toys does not match");
     }
 
     @AfterTest

@@ -5,9 +5,8 @@ import org.openqa.selenium.By;
 
 public class ShoppingCart extends BasePage {
     By basket = By.id("nav-cart");
-    By toysList = By.xpath("//span[contains(@data-action,'delete')]");
-
-
+    By toysList = By.xpath("//input[contains(@data-action,'delete')]");
+    By numberOfToys = By.id("nav-cart-count");
 
     public void navigateToBasket() {
         driver.findElement(basket).click();
@@ -16,6 +15,11 @@ public class ShoppingCart extends BasePage {
     public void deleteToy() throws InterruptedException {
         Thread.sleep(1000);
         driver.findElements(toysList).get(1).click();
+    }
+
+    public String getNumberOfToys() {
+        String number = driver.findElement(numberOfToys).getText();
+        return number;
     }
 
 }
