@@ -1,9 +1,9 @@
 package com.amazon.pageObjects;
 
-import com.amazon.base.BasePage;
+import com.amazon.base.BaseTest;
 import org.openqa.selenium.By;
 
-public class ShoppingCart extends BasePage {
+public class ShoppingCart extends BaseTest {
     By basket = By.id("nav-cart");
     By toysList = By.xpath("//input[contains(@data-action,'delete')]");
     By numberOfToys = By.id("nav-cart-count");

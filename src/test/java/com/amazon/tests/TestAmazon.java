@@ -1,6 +1,6 @@
 package com.amazon.tests;
 
-import com.amazon.base.BasePage;
+import com.amazon.base.BaseTest;
 import com.amazon.pageObjects.AmazonHomePage;
 import com.amazon.pageObjects.CheckoutPage;
 import com.amazon.pageObjects.ShoppingCart;
@@ -11,7 +11,7 @@ import java.io.IOException;
 
 import static com.amazone.util.TestDataReader.*;
 
-public class TestAmazon extends BasePage {
+public class TestAmazon extends BaseTest {
     AmazonHomePage amazonHomePage;
     ShoppingCart shoppingCart;
     CheckoutPage checkoutPage;
@@ -21,7 +21,7 @@ public class TestAmazon extends BasePage {
 
     @BeforeTest
     public void setUp() throws IOException {
-        initialization();
+        TestAmazon.setUp();
         amazonHomePage = new AmazonHomePage();
         shoppingCart = new ShoppingCart();
         checkoutPage = new CheckoutPage();

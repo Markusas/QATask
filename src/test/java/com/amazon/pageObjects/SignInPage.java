@@ -1,6 +1,6 @@
 package com.amazon.pageObjects;
 
-import com.amazon.base.BasePage;
+import com.amazon.base.BaseTest;
 import org.openqa.selenium.By;
 
 import java.io.IOException;
@@ -8,7 +8,7 @@ import java.io.IOException;
 import static com.amazone.util.TestDataReader.getEmail;
 import static com.amazone.util.TestDataReader.getPassword;
 
-public class SignInPage extends BasePage {
+public class SignInPage extends BaseTest {
 
     public SignInPage() {
     }

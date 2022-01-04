@@ -1,10 +1,10 @@
 package com.amazon.pageObjects;
 
-import com.amazon.base.BasePage;
+import com.amazon.base.BaseTest;
 import org.openqa.selenium.By;
 
 
-public class CheckoutPage extends BasePage {
+public class CheckoutPage extends BaseTest {
     By price = By.xpath("//*[@id='sc-subtotal-amount-buybox']/span");
 
     public double getPrice() {
