@@ -1,6 +1,6 @@
 package com.amazon.tests;
 
-import com.amazon.base.BasePage;
+import com.amazon.base.BaseTest;
 import com.amazon.pageObjects.AmazonHomePage;
 import com.amazon.pageObjects.CheckoutPage;
 import com.amazon.pageObjects.ShoppingCart;
@@ -11,64 +11,39 @@ import java.io.IOException;
 
 import static com.amazone.util.TestDataReader.*;
 
-public class TestAmazon extends BasePage {
+public class TestAmazon extends BaseTest {
     AmazonHomePage amazonHomePage;
     ShoppingCart shoppingCart;
     CheckoutPage checkoutPage;
 
-    public TestAmazon() {
-    }
-
-    @BeforeTest
-    public void setUp() throws IOException {
-        initialization();
-        amazonHomePage = new AmazonHomePage();
-        shoppingCart = new ShoppingCart();
-        checkoutPage = new CheckoutPage();
-    }
-
     @Test(priority = 1)
     public void searchForToy() throws IOException {
+        amazonHomePage = new AmazonHomePage(driver);
+        shoppingCart = new ShoppingCart(driver);
+        checkoutPage = new CheckoutPage(driver);
+
+        //Searching for products
         amazonHomePage.searchToy(getToyName());
-    }
+        commonElements.clickCookieAccept();
 
-    @Test(priority = 2)
-    public void sortToys() throws InterruptedException {
+        //Sorting products
         amazonHomePage.sortByCustomerReview();
-    }
 
-    @Test(priority = 3)
-    public void addToCard() {
+        //Adding products to cart
         amazonHomePage.addThirdToy();
         amazonHomePage.navigateBack();
         amazonHomePage.addFourthToy();
-    }
 
-    @Test(priority = 4)
-    public void navigateToShoppingCart() {
+        //Removing products from cart
         shoppingCart.navigateToBasket();
-    }
-
-    @Test(priority = 5)
-    public void removeSecondToy() throws InterruptedException {
         shoppingCart.deleteToy();
-    }
 
-    @Test(priority = 6)
-    public void checkBasket() throws IOException {
+        //Checking basket
         String count = shoppingCart.getNumberOfToys();
         Assert.assertEquals(count, getToysAmount(), "Count of toys does not match");
-    }
 
-    @Test(priority = 7)
-    public void verifyAmount() throws IOException {
-        double amount = checkoutPage.getPrice();
-        Assert.assertEquals(amount, Double.parseDouble(getTotalPrice()), "Total amount does not match");
+        //Verifying Amount
+        String actualAmount = checkoutPage.getPrice();
+        Assert.assertEquals(actualAmount, amazonHomePage.productPrice, "Total amount does not match");
     }
-
-    @Test(priority = 8)
-    public void clearBasket() {
-        shoppingCart.deleteToyFromBasket();
-    }
-
 }
