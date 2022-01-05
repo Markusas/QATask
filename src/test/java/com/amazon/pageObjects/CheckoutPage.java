@@ -1,16 +1,25 @@
 package com.amazon.pageObjects;
 
-import com.amazon.base.BaseTest;
-import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 
-public class CheckoutPage extends BaseTest {
-    By price = By.xpath("//*[@id='sc-subtotal-amount-buybox']/span");
+public class CheckoutPage {
+    WebDriver driver;
 
-    public double getPrice() {
-        String amount = driver.findElement(price).getText();
-        double pr = Double.parseDouble(amount.replace("£", ""));
-        return pr;
+    @FindBy(xpath = "//*[@id='sc-subtotal-amount-buybox']/span")
+    WebElement price;
+
+    public CheckoutPage(WebDriver driver) {
+        this.driver = driver;
+        PageFactory.initElements(driver, this);
+    }
+
+    public String getPrice() {
+        String amount = this.price.getText();
+        return amount;
     }
 
 }

@@ -16,59 +16,34 @@ public class TestAmazon extends BaseTest {
     ShoppingCart shoppingCart;
     CheckoutPage checkoutPage;
 
-    public TestAmazon() {
-    }
-
-    @BeforeTest
-    public void setUp() throws IOException {
-        TestAmazon.setUp();
-        amazonHomePage = new AmazonHomePage();
-        shoppingCart = new ShoppingCart();
-        checkoutPage = new CheckoutPage();
-    }
-
     @Test(priority = 1)
     public void searchForToy() throws IOException {
+        amazonHomePage = new AmazonHomePage(driver);
+        shoppingCart = new ShoppingCart(driver);
+        checkoutPage = new CheckoutPage(driver);
+
+        //Searching for products
         amazonHomePage.searchToy(getToyName());
-    }
+        commonElements.clickCookieAccept();
 
-    @Test(priority = 2)
-    public void sortToys() throws InterruptedException {
+        //Sorting products
         amazonHomePage.sortByCustomerReview();
-    }
 
-    @Test(priority = 3)
-    public void addToCard() {
+        //Adding products to cart
         amazonHomePage.addThirdToy();
         amazonHomePage.navigateBack();
         amazonHomePage.addFourthToy();
-    }
 
-    @Test(priority = 4)
-    public void navigateToShoppingCart() {
+        //Removing products from cart
         shoppingCart.navigateToBasket();
-    }
-
-    @Test(priority = 5)
-    public void removeSecondToy() throws InterruptedException {
         shoppingCart.deleteToy();
-    }
 
-    @Test(priority = 6)
-    public void checkBasket() throws IOException {
+        //Checking basket
         String count = shoppingCart.getNumberOfToys();
         Assert.assertEquals(count, getToysAmount(), "Count of toys does not match");
-    }
 
-    @Test(priority = 7)
-    public void verifyAmount() throws IOException {
-        double amount = checkoutPage.getPrice();
-        Assert.assertEquals(amount, Double.parseDouble(getTotalPrice()), "Total amount does not match");
+        //Verifying Amount
+        String actualAmount = checkoutPage.getPrice();
+        Assert.assertEquals(actualAmount, amazonHomePage.productPrice, "Total amount does not match");
     }
-
-    @Test(priority = 8)
-    public void clearBasket() {
-        shoppingCart.deleteToyFromBasket();
-    }
-
 }

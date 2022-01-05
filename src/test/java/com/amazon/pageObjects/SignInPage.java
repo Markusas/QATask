@@ -1,30 +1,49 @@
 package com.amazon.pageObjects;
 
-import com.amazon.base.BaseTest;
-import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 import java.io.IOException;
 
 import static com.amazone.util.TestDataReader.getEmail;
 import static com.amazone.util.TestDataReader.getPassword;
 
-public class SignInPage extends BaseTest {
+public class SignInPage {
+    WebDriver driver;
 
-    public SignInPage() {
+    @FindBy(id = "ap_email")
+    WebElement email;
+
+    @FindBy(id = "continue")
+    WebElement continueButton;
+
+    @FindBy(id = "ap_password")
+    WebElement password;
+
+    @FindBy(id = "signInSubmit")
+    WebElement signInSubmit;
+
+    @FindBy(id = "nav-link-accountList-nav-line-1")
+    WebElement welcomeMessage;
+
+    public SignInPage(WebDriver driver) {
+        this.driver = driver;
+        PageFactory.initElements(driver, this);
     }
 
-    By email = By.id("ap_email");
-    By continueButton = By.id("continue");
-    By password = By.id("ap_password");
-    By signInSubmit = By.id("signInSubmit");
-
     public void enterEmailAndContinue() throws IOException {
-        driver.findElement(email).sendKeys(getEmail());
-        driver.findElement(continueButton).click();
+        this.email.sendKeys(getEmail());
+        this.continueButton.click();
     }
 
     public void enterPasswordAndSubmit() throws IOException {
-        driver.findElement(password).sendKeys(getPassword());
-        driver.findElement(signInSubmit).click();
+        this.password.sendKeys(getPassword());
+        this.signInSubmit.click();
+    }
+
+    public String getWelcomeText() {
+        return this.welcomeMessage.getText();
     }
 }
