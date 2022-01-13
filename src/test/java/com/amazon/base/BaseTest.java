@@ -4,6 +4,7 @@ import com.amazon.pageObjects.CommonElements;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.*;
 
 import java.io.IOException;
@@ -20,7 +21,9 @@ public class BaseTest {
 
     @BeforeMethod
     public void setUp() throws IOException {
-
+        ChromeOptions options = new ChromeOptions();
+        options.setExperimentalOption("useAutomationExtension", false);
+        driver = new ChromeDriver(options);
         //String browser = getBrowser();
         this.baseUrl = getUrl();
         //nodeUrl = getNodeUrl();
@@ -29,7 +32,7 @@ public class BaseTest {
         //dc.setPlatform(Platform.WINDOWS);
 
         //driver = new RemoteWebDriver(new URL(nodeUrl), dc);
-        driver = new ChromeDriver();
+
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(Integer.parseInt(getTime())));
         driver.get(this.baseUrl);
         driver.manage().window().maximize();
