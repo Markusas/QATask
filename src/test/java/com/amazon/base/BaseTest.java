@@ -1,6 +1,7 @@
 package com.amazon.base;
 
 import com.amazon.pageObjects.CommonElements;
+import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -21,6 +22,7 @@ public class BaseTest {
 
     @BeforeMethod
     public void setUp() throws IOException {
+        WebDriverManager.chromedriver().setup();
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--no-sandbox");
         options.addArguments("--disable-dev-shm-usage");
@@ -35,7 +37,7 @@ public class BaseTest {
 
         //driver = new RemoteWebDriver(new URL(nodeUrl), dc);
 
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(Integer.parseInt(getTime())));
+        //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(Integer.parseInt(getTime())));
         driver.get(this.baseUrl);
         driver.manage().window().maximize();
         driver.manage().deleteAllCookies();
