@@ -1,14 +1,20 @@
 package com.amazone.util;
 
-import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.Properties;
 
 public class TestDataReader {
+    static Properties properties;
+
     public static Properties getTestData() throws IOException {
-        FileInputStream fp = new FileInputStream("src\\main\\resources\\testdate.properties");
-        Properties properties = new Properties();
-        properties.load(fp);
+
+        if (properties == null) {
+            InputStream stream = TestDataReader.class.getResourceAsStream("/testdata.properties");
+            properties = new Properties();
+            properties.load(stream);
+        }
+
         return properties;
     }
 
