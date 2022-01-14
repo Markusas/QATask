@@ -1,43 +1,39 @@
 package com.amazon.base;
 
 import com.amazon.pageObjects.CommonElements;
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
+
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.testng.annotations.*;
 
 import java.io.IOException;
+import java.net.URL;
 import java.time.Duration;
+import java.util.concurrent.TimeUnit;
 
 import static com.amazone.util.TestDataReader.*;
 
 public class BaseTest {
     public WebDriver driver;
     String baseUrl;
-    //String nodeUrl;
-    //DesiredCapabilities dc;
+    String nodeUrl;
+    DesiredCapabilities dc;
     public CommonElements commonElements;
 
     @BeforeMethod
     public void setUp() throws IOException {
-        WebDriverManager.chromedriver().setup();
-        ChromeOptions options = new ChromeOptions();
-        options.addArguments("--no-sandbox");
-        options.addArguments("--disable-dev-shm-usage");
-        options.addArguments("--headless");
-        driver = new ChromeDriver(options);
-        //String browser = getBrowser();
+        String browser = getBrowser();
         this.baseUrl = getUrl();
-        //nodeUrl = getNodeUrl();
-        //dc = new DesiredCapabilities();
-        //dc.setBrowserName(browser);
-        //dc.setPlatform(Platform.WINDOWS);
+        nodeUrl = getNodeUrl();
+        dc = new DesiredCapabilities();
+        dc.setBrowserName(browser);
+        dc.setPlatform(Platform.WINDOWS);
 
-        //driver = new RemoteWebDriver(new URL(nodeUrl), dc);
+        driver = new RemoteWebDriver(new URL(nodeUrl), dc);
 
-        //driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(Integer.parseInt(getTime())));
+        driver.manage().timeouts().implicitlyWait(Integer.parseInt(getTime()), TimeUnit.SECONDS);
         driver.get(this.baseUrl);
         driver.manage().window().maximize();
         driver.manage().deleteAllCookies();
